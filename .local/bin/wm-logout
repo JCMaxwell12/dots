@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Original script: https://github.com/debxp/dmenu-scripts/tree/master
+# fuzzel theming
+lines="-l 3"
+font="-fn Inconsolata-15"
+
+first_prompt="Logout "
+opt1="Poweroff\nReboot"
+opt2="Yes\nNo"
+
+
+ask() {
+    answer="$( echo -e $1 | fuzzel --dmenu -i -p "$2" $lines $colors $font )"
+}
+
+ask "$opt1" "$first_prompt"
+
+case $answer in
+    "Poweroff")
+        ask "$opt2" "Poweroff? "
+        if [[ $answer == "Yes" ]]; then
+            loginctl poweroff
+        fi
+        exit 0
+        ;;
+    "Reboot")
+        ask "$opt2" "Reboot? "
+        if [[ $answer == "Yes" ]]; then
+            loginctl reboot
+        fi
+        exit 0
+        ;;
+esac
+
+exit 0
