@@ -1,0 +1,181 @@
+@import "./colors.css";
+
+* {
+  background: transparent;
+  font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  color: white;
+  margin: 0.5px 0px 0px 0.5px;
+  min-width: 10px;
+  min-height: 0;
+}
+
+#waybar {
+  background: transparent;
+}
+
+#tray menu,
+tooltip {
+  background: @background;
+  color: @active;
+  border: 1px solid shade(@active, 0.6);
+}
+
+#scroll,
+#bluetooth,
+#mpris,
+#clock,
+#hardware,
+#wireplumber,
+#scripts,
+#custom-weather,
+#pulseaudio,
+#cpu,
+#memory,
+#batteries,
+#custom-newsboat,
+#custom-media,
+#hyprland-workspaces,
+#hyprland-window,
+#window,
+#battery,
+#backlight,
+#network,
+#language,
+#workspaces,
+#idle_inhibitor,
+#tray {
+  background: alpha(@background, 0.8);
+  border-radius: 12px;
+  padding: 1px 6px 0px 6px;
+  margin-right: 2px;
+  border: 1px solid #bd93f9;
+}
+
+#hyprland-window,
+#clock {
+  padding-top: 4px;
+}
+
+#workspaces {
+  padding: 0px 6px 0px 6px;
+}
+#wireplumber.muted {
+  background-color: #f53c3c
+}
+
+#workspaces {
+  padding: 0px 2px 0px 2px;
+}
+
+#tray {
+  padding: 0px 8px 0px 8px;
+}
+
+#workspaces button {
+  padding: 0px 1px 0px 1px;
+  border-radius: 80%;
+  color: shade(@background, 0.8);
+}
+#workspaces button.urgent {
+  text-decoration: underline;
+  font-weight: bold;
+}
+#workspaces button.active {
+  padding: 0px 2px 0px 2px;
+  background: shade(alpha(@foreground, 0.2), 0.8);
+  color: shade(@foreground, 0.9);
+  border-radius: 12px;
+}
+
+/* subhighlight */
+#gamemode,
+#submap,
+#custom-recorder,
+#custom-vpn,
+#custom-github,
+#custom-updates,
+#bluetooth.connected {
+  background: shade(alpha(@foreground, 0.1), 0.8);
+  border-radius: 8px;
+}
+
+#idle_inhibitor,
+#pulseaudio,
+#pulseaudio.mic {
+  color: #7aa2f7;
+}
+
+#backlight {
+  font-family: "Symbols Nerd Font Mono";
+  color: #fab387;
+}
+
+#cpu, 
+#memory {
+  color: #50fa7b;
+}
+
+#network,
+#bluetooth {
+  color: #8be9fd;
+}
+
+#disk {
+  color: shade(#7aa2f7, 0.8);
+}
+
+#custom-batterysaver.powersave,
+#custom-batterysaver.power {
+  color: #a6e3a1;
+}
+#custom-batterysaver.default,
+#custom-batterysaver.normal {
+  color: @foreground;
+}
+#custom-batterysaver.performance {
+  color: #d78787;
+}
+
+#network.disabled,
+#network.disconnected {
+  color: #d78787;
+}
+
+@keyframes blink {
+  to {
+    background-color: alpha(red, 0.6);
+    color: @foreground;
+  }
+}
+@keyframes blink-blue {
+  to {
+    background-color: alpha(#7aa2f7, 0.6);
+    color: @foreground;
+  }
+}
+
+#battery.warning:not(.charging),
+#battery.critical:not(.charging) {
+  animation-name: blink;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#bluetooth.discoverable,
+#bluetooth.discovering {
+  animation-name: blink-blue;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+/* Override */
+
+#batteries {
+  margin-right: 0px;
+  border-radius: 0px 0px 0px 8px;
+}

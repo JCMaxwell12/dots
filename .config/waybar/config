@@ -1,0 +1,195 @@
+{
+    "layer": "top", // Waybar at top layer
+    "spacing": 2, // Gaps between modules (2px)
+
+    // Choose the order of the modules
+    "modules-left": ["clock","hyprland/workspaces", "mpris"],
+    //"modules-center": [],
+    "modules-right": ["tray", "wireplumber", "backlight", "custom/newsboat", "network", "bluetooth", "cpu", "memory", "hyprland/language", "battery"],
+
+    // Modules configuration
+    "custom/newsboat": {
+    	"format": " {}",
+    	"exec": "[  -n $(pgrep newsboat) ] && newsboat -x print-unread | grep -Eo '[0-9]{1,4}'",
+    	"interval": 1800,
+	"on-click": "newsboat -x reload",
+	"on-click-right": "foot newsboat"
+    },
+    "bluetooth": {
+	"format": " {status}",
+	"format-connected": " {device_alias}",
+	"on-click": "foot bluetuith",
+	"format-connected-battery": " {device_alias} {device_battery_percentage}%",
+	// "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+	"tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+	"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+	},
+    "wireplumber": {
+    	"format": "{volume}% {icon}",
+	"format-muted": "",
+	"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "on-click-middle": "pactl set-sink-volume @DEFAULT_SINK@ 50%",
+
+    	"format-icons": ["", "", ""],
+    	"max-volume": 150,
+    	"scroll-step": 0.4
+	},
+    "hyprland/workspaces": {
+    //     "disable-scroll": true,
+    //     "all-outputs": true,
+    //     "format": "{name}: {icon}",
+        "format-icons": {
+    //         "1": "",
+    //         "2": "",
+    //         "3": "",
+    //         "4": "",
+    //         "5": "",
+            "urgent": "",
+            "focused": "",
+    //         "default": ""
+        }
+    },
+    "hyprland/submap": {
+    "format": "{}",
+    "max-length": 8,
+    "tooltip": true,
+    },
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+    "tray": {
+        // "icon-size": 20,
+        "spacing": 10
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "cpu": {
+	"format": "<span font='Font Awesome 6 Free Solid'></span> {usage}%",
+        "tooltip": false,
+	"on-click": "$TERMINAL -e htop --sort-key=PERCENT_CPU"
+    },
+    "memory": {
+	"format": "<span font='Font Awesome 6 Free Solid'></span> {}%",
+	"on-click": "$TERMINAL -e htop --sort-key=M_RESIDENT"
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 85,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+	"on-click": 		"brightnessctl s 10%",
+	"on-click-middle": 	"brightnessctl s 50%",
+	"on-click-right": 	"brightnessctl s 90%",
+	"on-scroll-up": 	"brightnessctl s +1000",
+	"on-scroll-down": 	"brightnessctl s 1000- -n 1"
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+    "network": {
+        // "interface": 	"wlp2*", // (Optional) To force the use of this interface
+        "interface": 	"wlan0",
+        "format-wifi": 		"{essid} ({signalStrength}%) ",
+        "format-ethernet": 	"{ipaddr}/{cidr} <span font='Font Awesome 6 Free Solid'></span>",
+        "tooltip-format": 	"{ifname} via {gwaddr} <span font='Font Awesome 6 Free Solid'></span>",
+        "format-linked": 	"{ifname} (No IP) <span font='Font Awesome 6 Free Solid'></span>",
+        "format-disconnected": 	"Disconnected ",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+	"on-click-right": 	"foot -T nmtui nmtui"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume} {icon} {format_source}",
+        "format-bluetooth": "{volume} {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume} ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 14,
+        "icon-theme": "Numix-Circle",
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "ignore-list": [
+           "Alacritty"
+        ],
+        "app_ids-mapping": {
+          "firefoxdeveloperedition": "firefox-developer-edition"
+        }
+    },
+    "hyprland/language": {
+    	"format": " {}",
+	"format-en": "US",
+    	"keyboard-name": "at-translated-set-2-keyboard"
+    },
+    "mpris": {
+	"format": "DEFAULT: {player_icon} {dynamic}",
+	"format-paused": "DEFAULT: {status_icon} <i>{dynamic}</i>",
+    	"max-length": 8,
+	"player-icons": {
+		"default": "▶",
+		"mpv": "🎵"
+	},
+	"status-icons": {
+		"paused": "⏸"
+	},
+    }
+}
