@@ -1,0 +1,3 @@
+#!/bin/sh
+qrencode -s 10 -t PNG -o /tmp/qr.png $(wl-paste)
+imv /tmp/qr.png -w clipqr
