@@ -34,4 +34,4 @@ alias \
 	ka='killall -I -w'\
 	irssi="irssi --config="$XDG_CONFIG_HOME"/irssi/config --home="$XDG_DATA_HOME"/irssi"\
 	yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'\
-	gitc='/usr/bin/git --git-dir="$HOME/Documents/dotfiles/" --work-tree="$HOME"'
+	gitc='/usr/bin/git --git-dir="$HOME/Documents/dotfiles.cfg/" --work-tree="$HOME"'
