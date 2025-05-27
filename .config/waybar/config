@@ -121,7 +121,7 @@
     },
     "network": {
         // "interface": 	"wlp2*", // (Optional) To force the use of this interface
-        "interface": 	"wlan0",
+        "interface": 	"eth0",
         "format-wifi": 		"{essid} ({signalStrength}%) ",
         "format-ethernet": 	"{ipaddr}/{cidr} <span font='Font Awesome 6 Free Solid'></span>",
         "tooltip-format": 	"{ifname} via {gwaddr} <span font='Font Awesome 6 Free Solid'></span>",
