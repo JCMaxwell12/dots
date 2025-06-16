@@ -1,0 +1,84 @@
+;; defsrc is still necessary
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+       q    w    e    r    t    y    u    i    o    p
+  caps a    s 	 d    f    g    h    j    k    l    ;
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl      lalt           spc            ralt      rctl
+)
+(defvar
+  tap-time 150
+  hold-time 200
+)
+
+(defalias
+  a (multi f24 (tap-hold $tap-time $hold-time a lmet))
+  s (multi f24 (tap-hold $tap-time $hold-time s lalt))
+  d (multi f24 (tap-hold $tap-time $hold-time d lsft))
+  f (multi f24 (tap-hold $tap-time $hold-time f lctl))
+  j (multi f24 (tap-hold $tap-time $hold-time j rctl))
+  k (multi f24 (tap-hold $tap-time $hold-time k rsft))
+  l (multi f24 (tap-hold $tap-time $hold-time l ralt))
+  ; (multi f24 (tap-hold $tap-time $hold-time ; rmet))
+  mus (layer-while-held mouse)
+  nav (layer-while-held nav)
+  num (layer-while-held num)
+  sym (layer-while-held sym)
+  fun (layer-while-held fun)
+  mmu (movemouse-up 1 1)
+  mml (movemouse-left 1 1)
+  mmd (movemouse-down 1 1)
+  mmr (movemouse-right 1 1)
+)
+
+(deflayer base
+       _    _    _    _    _    _    _    _    _    _
+  esc  @a   @s   @d   @f   _    _    @j   @k   @l   @;
+  @num _    _    _    _    _    _    _    _    _    _    @fun
+  @mus @nav              _              @sym      _
+)
+
+(deflayer mouse
+       _    _    _    _    _    _    mlft mmid mrgt _
+  _    _    _    _    _    _    mwl  mwd  mwu  mwr  _
+  _    _    _    _    _    _    @mml @mmd @mmu @mmr _    _
+  _    _              _              _         _
+)
+
+(deflayer nav
+       _    _    _    _    _    _    del  _    _    _
+  _    _    _    _    _    _    left down up   rght caps
+  _    _    _    _    _    _    ins  pgdn pgup home end  _
+  _    _                   _              _         _
+)
+
+(deflayer num
+       _    _    _    _    _    _    7    8    9    _
+  _    _    _    _    _    _    _    4    5    6    _
+  _    _    _    _    _    _    _    1    2    3    0    _
+  _    _                   _              _         _
+)
+
+(deflayer sym
+       S-1  S-2  S-3  S-4  `    _    _    _    _    _
+  _    S-5  S-6  S-7  S-8  \    _    _    _    _    _
+  _    S-9  S-0  -    =    _    _    _    _    _    _    _
+  _    _                   _              _         _
+)
+
+(deflayer shift_sym
+       _    _    _    _    `    _    _    _    _    _
+  _    {    }    _    _    S-\  _    _    _    _    _
+  _    [    ]    S--  +    _    _    _    _    _    _    _
+  _    _                   _              _         _
+)
+
+(deflayer fun
+       f1   f2   f3   f4   _    _    _    _    _    _
+  _    f5   f6   f7   f8   _    _    _    _    _    _
+  _    f9   f10  f11  f12  _    _    _    _    _    _   _
+  _    _                   _              _         _
+)
