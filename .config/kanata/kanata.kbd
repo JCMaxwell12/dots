@@ -37,8 +37,8 @@
 (deflayer base
        _    _    _    _    _    _    _    _    _    _
   esc  @a   @s   @d   @f   _    _    @j   @k   @l   @;
-  @num _    _    _    _    _    _    _    _    _    _    @fun
-  @mus @nav              _              @sym      _
+  @nav _    _    _    _    _    _    _    _    _    _    @fun
+  @mus @num              _              @sym      _
 )
 
 (deflayer mouse
